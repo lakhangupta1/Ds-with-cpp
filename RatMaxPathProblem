@@ -1,0 +1,48 @@
+#include<iostream>
+using namespace std;
+bool issafe(int x,int y,int n,int arr[][20],int vis[][20]){
+    if((x>=0&&x<n)&& (y>=0&&y<n)&& (arr[x][y]==1)&& (vis[x][y]!=1))
+    return true ;
+    return false;
+}
+void solve(int x,int y,int n,int arr[][20],int vis[][20]){
+    if(x==n-1&& y==n-1){
+        vis[x][y]=1;
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n;j++){
+                cout<<vis[i][j]<<" ";
+            }
+            cout<<endl;
+        }
+        vis[x][y]=0;
+        cout<<endl;
+    }
+    if(issafe(x+1,y,n,arr,vis)){
+        vis[x][y]=1;
+        solve(x+1,y,n,arr,vis);
+        vis[x][y]=0;
+    }
+    if(issafe(x-1,y,n,arr,vis)){
+        vis[x][y]=1;
+        solve(x-1,y,n,arr,vis);
+        vis[x][y]=0;
+    }
+    if(issafe(x,y+1,n,arr,vis)){
+        vis[x][y]=1;
+        solve(x,y+1,n,arr,vis);
+        vis[x][y]=0;
+    }
+    if(issafe(x,y-1,n,arr,vis)){
+        vis[x][y]=1;
+        solve(x,y-1,n,arr,vis);
+        vis[x][y]=0;
+    }
+}
+int main(){
+     int arr[20][20]={{1,1,0},{1,1,0},{1,1,1}};
+     int vis[20][20]={0};
+     int n=3;
+     solve(0,0,n,arr,vis);
+
+     return 0;
+}
