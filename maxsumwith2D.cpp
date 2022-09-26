@@ -3,10 +3,12 @@
 using namespace std;
 int maxisum(int a[3][3]){
     int ans=INT_MIN;
+    int sum=0;
     for(int i=0;i<n;i++){
         for(int j=0;j<n;j++){
-            ans=max(ans,a[j][i]);
+            sum+=a[j][i];
         }
+         ans=max(ans,sum);
     }
     return ans;
 
